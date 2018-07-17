@@ -52,7 +52,19 @@ func AddReplaceTodo(w http.ResponseWriter, r* http.Request) {
 	w.WriteHeader(201)
 }
 
+func DeleteTodo(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	for i := 0; i < len(todos); i++ {
+		todo := &todos[i]
+		if todo.Id == params["id"] {
+			log.Print("Deleting Todo: ", todo)
+			todos = append(todos[:i], todos[i+1:]...)
+			return
+		}
+	}
 
+	w.WriteHeader(404)
+}
 
 func main() {
 	port, ok := os.LookupEnv("PORT")
@@ -69,5 +81,6 @@ func main() {
 	router.HandleFunc("/todo", GetTodos).Methods("GET")
 	router.HandleFunc("/todo/{id}", GetTodo).Methods("GET")
 	router.HandleFunc("/todo/{id}", AddReplaceTodo).Methods("POST")
+	router.HandleFunc("/todo/{id}", DeleteTodo).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(port, router))
 }

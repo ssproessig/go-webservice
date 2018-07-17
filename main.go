@@ -8,31 +8,30 @@ import (
 	"github.com/gorilla/mux"
 )
 
-
 type Todo struct {
-	Id string `json:"id"`
+	Id    string `json:"id"`
 	Title string `json:"title"`
 }
+
 var todos []Todo
 
-
-func GetTodos(w http.ResponseWriter, r* http.Request) {
+func GetTodos(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(todos)
 }
 
-func GetTodo(w http.ResponseWriter, r* http.Request) {
+func GetTodo(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	for _, item := range todos {
 		if item.Id == params["id"] {
 			json.NewEncoder(w).Encode(item)
 			return
-	}
+		}
 	}
 
 	w.WriteHeader(404)
 }
 
-func AddReplaceTodo(w http.ResponseWriter, r* http.Request) {
+func AddReplaceTodo(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	var newTodo Todo
 	_ = json.NewDecoder(r.Body).Decode(&newTodo)

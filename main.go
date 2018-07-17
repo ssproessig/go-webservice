@@ -8,6 +8,13 @@ import (
 )
 
 
+type Todo struct {
+	Id string `json:"id"`
+	Title string `json:"title"`
+}
+var todo []Todo
+
+
 func GetTodo(w http.ResponseWriter, r* http.Request) {}
 
 
@@ -18,6 +25,9 @@ func main() {
 	}
 	port = ":" + port
 	log.Printf("Listening on port %s", port)
+
+	// add one sample entry
+	todo = append(todo, Todo{Id: "1", Title: "First Todo"})
 
 	router := mux.NewRouter()
 	router.HandleFunc("/todo", GetTodo).Methods("GET")

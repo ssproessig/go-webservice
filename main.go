@@ -25,9 +25,11 @@ func GetTodo(w http.ResponseWriter, r* http.Request) {
 	for _, item := range todos {
 		if item.Id == params["id"] {
 			json.NewEncoder(w).Encode(item)
-			break
+			return
 	}
 	}
+
+	w.WriteHeader(404)
 }
 
 

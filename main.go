@@ -20,6 +20,17 @@ func GetTodos(w http.ResponseWriter, r* http.Request) {
 	json.NewEncoder(w).Encode(todos)
 }
 
+func GetTodo(w http.ResponseWriter, r* http.Request) {
+	params := mux.Vars(r)
+	for _, item := range todos {
+		if item.Id == params["id"] {
+			json.NewEncoder(w).Encode(item)
+			break
+	}
+	}
+}
+
+
 
 func main() {
 	port, ok := os.LookupEnv("PORT")
@@ -34,5 +45,6 @@ func main() {
 
 	router := mux.NewRouter()
 	router.HandleFunc("/todo", GetTodos).Methods("GET")
+	router.HandleFunc("/todo/{id}", GetTodo).Methods("GET")
 	log.Fatal(http.ListenAndServe(port, router))
 }

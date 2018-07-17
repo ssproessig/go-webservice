@@ -32,6 +32,26 @@ func GetTodo(w http.ResponseWriter, r* http.Request) {
 	w.WriteHeader(404)
 }
 
+func AddReplaceTodo(w http.ResponseWriter, r* http.Request) {
+	params := mux.Vars(r)
+	var newTodo Todo
+	_ = json.NewDecoder(r.Body).Decode(&newTodo)
+	newTodo.Id = params["id"]
+
+	for i := 0; i < len(todos); i++ {
+		todo := &todos[i]
+		if todo.Id == params["id"] {
+			*todo = newTodo
+			log.Print("Replaced Todo: ", newTodo)
+			return
+		}
+	}
+
+	todos = append(todos, newTodo)
+	log.Print("Added Todo: ", newTodo)
+	w.WriteHeader(201)
+}
+
 
 
 func main() {
@@ -48,5 +68,6 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/todo", GetTodos).Methods("GET")
 	router.HandleFunc("/todo/{id}", GetTodo).Methods("GET")
+	router.HandleFunc("/todo/{id}", AddReplaceTodo).Methods("POST")
 	log.Fatal(http.ListenAndServe(port, router))
 }

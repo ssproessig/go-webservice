@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
 	"os"
@@ -15,7 +16,9 @@ type Todo struct {
 var todo []Todo
 
 
-func GetTodo(w http.ResponseWriter, r* http.Request) {}
+func GetTodo(w http.ResponseWriter, r* http.Request) {
+	json.NewEncoder(w).Encode(todo)
+}
 
 
 func main() {

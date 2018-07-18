@@ -74,6 +74,8 @@ func ServeWebSocket(w http.ResponseWriter, r *http.Request) {
 		log.Println("Upgrade:", err)
 		return
 	}
+
+	defer ws.Close()
 }
 
 func main() {

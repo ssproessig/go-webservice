@@ -65,6 +65,9 @@ func DeleteTodo(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(404)
 }
 
+func ServeWebSocket(w http.ResponseWriter, r *http.Request) {
+}
+
 func main() {
 	port, ok := os.LookupEnv("PORT")
 	if !ok {
@@ -81,5 +84,6 @@ func main() {
 	router.HandleFunc("/todo/{id}", GetTodo).Methods("GET")
 	router.HandleFunc("/todo/{id}", AddReplaceTodo).Methods("POST")
 	router.HandleFunc("/todo/{id}", DeleteTodo).Methods("DELETE")
+	router.HandleFunc("/ws", ServeWebSocket)
 	log.Fatal(http.ListenAndServe(port, router))
 }

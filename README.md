@@ -37,3 +37,11 @@ On my machine I used
     - how to update a buildpack with `cf update-buildpack` in a PCF Dev deployment
 - `for i,v := range slice` returns the index `i` - for updating the element - and a copy `v` of the element - that can not be changed!  
 - we can write "execute an operation with error result" and "check for actual error" as one-liner in go using `if err := call(); err != nil {...}`
+- WebSocket can simply be tested out of any recent browser:
+    - open the URL were our service runs, e.g. `localhost:8080`
+    - press `F12` to open the developer console
+    - enter `
+var ws = new WebSocket('ws://localhost:8080/ws');
+ws.onmessage = function(data) { console.log(data); }    
+`
+    - send stuff entering `ws.send("שלום")` and check the console for the response

@@ -8,6 +8,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
+var todoChanged chan Todo
+
 func main() {
 	port, ok := os.LookupEnv("PORT")
 	if !ok {
@@ -20,6 +22,9 @@ func main() {
 	if !ok {
 		amqpUri = "amqp://localhost:5672/"
 	}
+
+	todoChanged = make(chan Todo)
+	go Connect2AMQPAndSetupQueue(amqpUri, todoChanged)
 
 	// add one sample entry
 	todos = append(todos, Todo{Id: "1", Title: "First Todo"})

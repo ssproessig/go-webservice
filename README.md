@@ -8,7 +8,7 @@ Features to check
 
 - [x] provide RESTful API for a fake "Todo" service
 - [x] deploy service to Cloud Foundry
-- [ ] provide WebSocket endpoint that reverses the string passed
+- [x] provide WebSocket endpoint that reverses the string passed
 - [ ] use RabbitMQ with publish/subscribe; implement something like _when I `POST` add aREST endpoint, inform via WebSocket through a RabbitMQ queue_
 - [ ] check out `gorm` for ORM support
 - [ ] use PostgreSQL as a database backend
@@ -36,3 +36,4 @@ On my machine I used
     - how to use a remote buildpack in `cf push` with `-b https://....` 
     - how to update a buildpack with `cf update-buildpack` in a PCF Dev deployment
 - `for i,v := range slice` returns the index `i` - for updating the element - and a copy `v` of the element - that can not be changed!  
+- we can write "execute an operation with error result" and "check for actual error" as one-liner in go using `if err := call(); err != nil {...}`

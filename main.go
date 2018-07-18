@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"github.com/gorilla/mux"
+	"github.com/gorilla/websocket"
 )
 
 type Todo struct {
@@ -65,7 +66,14 @@ func DeleteTodo(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(404)
 }
 
+var upgrader = websocket.Upgrader{}
+
 func ServeWebSocket(w http.ResponseWriter, r *http.Request) {
+	ws, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println("Upgrade:", err)
+		return
+	}
 }
 
 func main() {

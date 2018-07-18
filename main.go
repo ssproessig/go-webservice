@@ -84,6 +84,11 @@ func ServeWebSocket(w http.ResponseWriter, r *http.Request) {
 			break
 		}
 		log.Printf("recv: %s", message)
+
+		var result string
+		for _, v := range string(message) {
+			result = string(v) + result
+		}
 	}
 }
 

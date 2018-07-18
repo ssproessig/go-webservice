@@ -76,6 +76,15 @@ func ServeWebSocket(w http.ResponseWriter, r *http.Request) {
 	}
 
 	defer ws.Close()
+
+	for {
+		mt, message, err := ws.ReadMessage()
+		if err != nil {
+			log.Println("read:", err)
+			break
+		}
+		log.Printf("recv: %s", message)
+	}
 }
 
 func main() {

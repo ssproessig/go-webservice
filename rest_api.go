@@ -42,12 +42,14 @@ func AddReplaceTodo(w http.ResponseWriter, r *http.Request) {
 		if todo.Id == params["id"] {
 			*todo = newTodo
 			log.Print("Replaced Todo: ", newTodo)
+			todoChanged <- newTodo
 			return
 		}
 	}
 
 	todos = append(todos, newTodo)
 	log.Print("Added Todo: ", newTodo)
+	todoChanged <- newTodo
 	w.WriteHeader(201)
 }
 

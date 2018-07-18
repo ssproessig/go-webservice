@@ -13,3 +13,7 @@
 [[constraint]]
   revision = "e5adc2ada8b8efff032bf61173a233d143e9318e"
   name = "github.com/streadway/amqp"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/jhunt/vcaptive"

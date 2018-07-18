@@ -11,5 +11,5 @@
   version = "1.2.0"
 
 [[constraint]]
-  branch = "master"  # this is really crap as we have a moving target here
+  revision = "e5adc2ada8b8efff032bf61173a233d143e9318e"
   name = "github.com/streadway/amqp"

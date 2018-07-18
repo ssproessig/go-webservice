@@ -16,6 +16,11 @@ func main() {
 	port = ":" + port
 	log.Printf("Listening on port %s", port)
 
+	amqpUri, ok := os.LookupEnv("AMQP_URI")
+	if !ok {
+		amqpUri = "amqp://localhost:5672/"
+	}
+
 	// add one sample entry
 	todos = append(todos, Todo{Id: "1", Title: "First Todo"})
 

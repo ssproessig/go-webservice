@@ -89,6 +89,11 @@ func ServeWebSocket(w http.ResponseWriter, r *http.Request) {
 		for _, v := range string(message) {
 			result = string(v) + result
 		}
+
+		if err := ws.WriteMessage(mt, []byte(result)); err != nil {
+			log.Println("write:", err)
+			break
+		}
 	}
 }
 

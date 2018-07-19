@@ -10,9 +10,10 @@ Features to check
 - [x] deploy service to Cloud Foundry
 - [x] provide WebSocket endpoint that reverses the string passed
 - [x] use RabbitMQ with publish/subscribe; implement something like _when I `POST` at a REST endpoint, inform through a RabbitMQ queue on this ORM change_
+- [x] deploy micro-service and link it with RabbitMQ services in Cloud Foundry
 - [ ] check out `gorm` for ORM support
 - [ ] use PostgreSQL as a database backend
-- [ ] deploy micro-service and link it with RabbitMQ and MySQL services to Cloud Foundry: so we change the used database backend when deploying - how do we do it?
+- [ ] deploy micro-service and link it with MySQL services in Cloud Foundry: so we change the used database backend when deploying - how do we do it?
 - [ ] use OAuth2 and authenticate and authorize against _Cloud Foundry's_ UAA    
 
 

@@ -9,7 +9,7 @@ Features to check
 - [x] provide RESTful API for a fake "Todo" service
 - [x] deploy service to Cloud Foundry
 - [x] provide WebSocket endpoint that reverses the string passed
-- [x] use RabbitMQ with publish/subscribe; implement something like _when I `POST` add aREST endpoint, inform via WebSocket through a RabbitMQ queue_
+- [x] use RabbitMQ with publish/subscribe; implement something like _when I `POST` at a REST endpoint, inform through a RabbitMQ queue on this ORM change_
 - [ ] check out `gorm` for ORM support
 - [ ] use PostgreSQL as a database backend
 - [ ] deploy micro-service and link it with RabbitMQ and MySQL services to Cloud Foundry: so we change the used database backend when deploying - how do we do it?
